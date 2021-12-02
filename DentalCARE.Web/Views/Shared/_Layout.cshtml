@@ -1,0 +1,88 @@
+﻿@using DentalCare.Core;
+@inject Сlinic _clinic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @Html.Partial("_Favicons")
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DentalCARE</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,300&family=Nobile&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/main.css">
+</head>
+<body>
+    <header id='header'>
+        <div class="container">
+            <div class="header-top">
+                <a asp-controller="Home" asp-action="Index" class="logo">
+                    <img src="~/img/logo.svg" alt="" class="logo-img">
+                    <p class="logo-titile">Dental<br>CARE</p>
+                </a>
+                <div class="header-top__person">
+                    <img class="header-top__img" src="~/img/account.svg" alt="">
+                    @if (_clinic.CurrentUser != null)
+                    {
+                        <a asp-controller="Users" asp-action="PersonalAccount" class="header-top__title">@_clinic.CurrentUser.FirstName</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Users" asp-action="Index" class="header-top__title">Личный кабинет</a>
+                    }
+
+                </div>
+            </div>
+            <nav class="header-menu">
+                <ul class="header-menu__list">
+                    <li class="header-menu__item"><a asp-controller="Information" asp-action="Index">О клинике</a></li>
+                    <li class="header-menu__item"><a asp-controller="Services" asp-action="ServiceList">Услуги</a></li>
+                    @*<li class="header-menu__item"><a href="">Цены на услуги</a></li>*@
+                    <li class="header-menu__item"><a asp-controller="Doctors" asp-action="Index">Наши доктора</a></li>
+                    <li class="header-menu__item"><a asp-controller="Appointment" asp-action="Index">Записаться на прием</a></li>
+                    <li class="header-menu__item"><a asp-controller="Reviews" asp-action="Index">Отзывы </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <h4 class="footer-title">Dental<span>CARE</span></h4>
+            <p class="footer-descr">Cтоматологическая клиника «DentalCARE» оказывает весь спектр самых современных стоматологических услуг.</p>
+            <div class="footer-container">
+                <ul class="contact-list footer-container__item--contact">
+                    <li class="contact-list__item" id="contact-list__item--geo">Новосибирск, улица Русская, дом 35, корпус 1</li>
+                    <li class="contact-list__item" id="contact-list__item--tel">+7(495)602-08-02, +7(985)367-89-63</li>
+                    <li class="contact-list__item" id="contact-list__item--email">dentalcare@mail.ru</li>
+                    <li class="contact-list__item">
+                        Пн-Пт: с 8:00 до 20:00
+                        <br>Суббота: с 9:00 до 16:00
+                        <br>Воскресенье: выходной
+                    </li>
+                    <li class="contact-list__item">С нами можно связаться в WhatsApp, Viber, Telegram, Skype или просто отправить СМС.</li>
+                </ul>
+                <ul class="footer-container__item">
+                    <li class="footer-container__link"><a asp-controller="Doctors" asp-action="Index">Наши доктора</a></li>
+                    <li class="footer-container__link"><a asp-controller="Services" asp-action="ServiceList">Услуги</a></li>
+                    <li class="footer-container__link"><a asp-controller="Reviews" asp-action="Index">Отзывы</a></li>
+                    <li class="footer-container__link"><a a asp-controller="Information" asp-action="Index">О клинике</a></li>
+                </ul>
+                <div class="footer-container__item">
+                    <a href="https://www.instagram.com/dentalcarecb/"><img src="~/img/instagram.svg" alt=""></a>
+                    <a href="https://vk.com/dentalcarespb"> <img src="~/img/vk.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

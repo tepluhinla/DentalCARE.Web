@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@inject ApplicationContext _db;
+@using DentalCare.Core 
+@model User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,300&family=Nobile&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/personalaccount.css">
+    <title>Персональный аккаунт</title>
+</head>
+<body>
+    <section class="person">
+        <div class="container">
+            <h1 class="person-title">Личный кабинет</h1>
+            <div class="person-container">
+                <div class="person-item__contact">
+                    <form method="post" class="person-item__form">
+                        <h2 class="person-item__title">Контактные данные</h2>
+                        <input type="hidden" class="person-item__input" name="Id" value="@Model.Id" placeholder="Id">
+                        <label for="">E-MAIL АДРЕС</label>
+                        <input type="text" class="person-item__input" name="EMail" value="@Model.EMail" placeholder="E-mail">
+                        <label for="">Фамилия</label>
+                        <input type="text" class="person-item__input" name="SurName" value="@Model.SurName" placeholder="Фамилия">
+                        <label for="">Имя</label>
+                        <input type="text" class="person-item__input" name="FirstName" value="@Model.FirstName" placeholder="Имя">
+                        <label for="">Пароль</label>
+                        <input type="password" class="person-item__input" name="Password" value="@Model.Password" placeholder="Пароль">
+                        <input type="hidden" class="person-item__input" name="Login" value="@Model.Login">
+                        <button type="submit" class="person-item__btn">Сохранить изменения</button>
+                    </form>
+                    <a asp-action="Logout" asp-controller="Users" style="color:black">Выйти из аккауната</a> 
+                </div>
+                <div class="person-item__records">
+                    <h2 class="person-item__title">Мои записи на прием</h2>
+                    @foreach (var appointment in _db.Appointments.Where(appointment => appointment.UserId == @Model.Id))
+                    {
+                        <p class="person-item__row">@appointment.AppointmentDate</p>
+                        <div class="perso-item__button">@Html.ActionLink("Отменить запись", "Remove", "Appointment", new { id = appointment.Id })
+                    </div>
+                    }
+                    @*<p class="person-item__row">26.04.2021 18:00</p>*@
+                    @*<Button class="perso-item__button">Отменить запись</Button>*@
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+</html>

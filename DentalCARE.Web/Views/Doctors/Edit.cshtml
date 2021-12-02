@@ -1,0 +1,23 @@
+﻿@model DentalCare.Core.Doctor
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="input-form">
+        <input type="text" name="Name" placeholder="ФИО доктора" value="@Model.Name">
+    </div>
+    <div class="input-form">
+        <input type="text" name="Position" placeholder="Должность" value="@Model.Position">
+    </div>
+    <div class="input-form">
+        <input type="text" name="Description" placeholder="Описание" value="@Model.Description">
+    </div>
+    <div class="input-form">
+        <input type="hidden" name="imagePath" value="@Model.imagePath">
+    </div>
+    <div class="input-form">
+        <input type="submit" value="Сохранить изменения">
+    </div>
+</form>

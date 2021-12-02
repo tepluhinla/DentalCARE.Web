@@ -1,0 +1,68 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/doctor.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section class="doctor">
+            <div class="container">
+                <h1 class="doctor-title">ВРАЧИ СТОМАТОЛОГИИ «Dental<span>CARE</span>»</h1>
+                <div class="doctor-container__list">
+                    @foreach (var doctor in Model)
+                    {<div class="doctor-container">
+                            <div class="doctor-container__avatar">
+                                <img src="~/@doctor.imagePath" height="200">
+                            </div>
+                            <div class="doctor-container__wrapper">
+                                <h3 class="doctor-container__title">@doctor.Name</h3>
+                                <p class="doctor-container__type">@doctor.Position</p>
+                                <p class="doctor-container__descr">
+                                    @doctor.Description
+                                </p>
+                            </div>
+                            <div class="doctor-container__buttons">
+                                <div class="doctor-container__buttons-item btn">@Html.ActionLink("Изменить", "Edit", "Doctors", new { id = @doctor.Id })</div>
+                                <div class="doctor-container__buttons-item btn"> @Html.ActionLink("Удалить", "Remove", "Doctors", new { id = @doctor.Id })</div>
+                            </div>
+                        </div>
+
+                    }
+
+                    @*<div class="doctor-container">
+                        <div class="doctor-container__avatar">
+                            <img src="~/img/doctor-1.png" alt="">
+                        </div>
+                        <div class="doctor-container__wrapper">
+                            <h3 class="doctor-container__title">Селюнина Ольга Вячеславовна</h3>
+                            <p class="doctor-container__type">Главный врач</p>
+                            <p class="doctor-container__descr">
+                                Врач-стоматолог-хирург высшей квалификационной категории с высшим образованием.
+                                Окончила Читинский государственный медицинский институт в 1992 году по специальности «Стоматология». Присвоена квалификация «Врач».
+                                Сертификат по специальности «Стоматология хирургическая», действительный до 18.03.2025 года.
+                            </p>
+                        </div>
+                        <div class="doctor-container__buttons">
+                            <div class="doctor-container__buttons-item btn">Изменить</div>
+                            <div class="doctor-container__buttons-item btn">Удалить</div>
+                        </div>
+                    </div>*@
+                </div>
+                <button class="doctor-add btn">@Html.ActionLink("Добавить", "Add", "Doctors")</button>
+                @*<div class="doctor-records">
+                    <a asp-controller="Appointment" asp-action="Index">Записаться на прием</a>
+                    <button class="doctor-records"> Записаться на приём</button>
+                </div>*@
+</section>
+    </main>
+</body>
+</html>

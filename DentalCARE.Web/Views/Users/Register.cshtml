@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@using DentalCare.Core;
+@model User
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+        @Html.Partial("_Favicons")
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Регистрация пользователя</title>
+        <link rel="stylesheet" href="~/css/registeraccount.css">
+    </head>
+      <body>
+        <div class="form">
+            <div class="logo"><a asp-controller="Home" asp-action="Index"><img src="~/img/logo.svg" alt=""></a></div>
+            <h1>Регистрация</h1>
+            <form method="post">
+                <div class="input-form">
+                    <input type="text" name="Login" placeholder="Логин" value="@Model.Login">
+                </div>
+                <div class="input-form">
+                    <input type="text" name="EMail" placeholder="E-MAIL АДРЕС" value="@Model.EMail">
+                </div>
+                <div class="input-form">
+                    <input type="text" name="FirstName" placeholder="Имя" value="@Model.FirstName">
+                </div>
+                <div class="input-form">
+                    <input type="text" name="SurName" placeholder="Фамилия" value="@Model.SurName">
+                </div>
+                <div class="input-form">
+                    <input type="password" name="Password" placeholder="Пароль" value="@Model.Password">
+                </div>
+                <div class="input-form">
+                    <input type="submit" value="Зарегистрировать аккаунт">
+                </div>
+                <a asp-controller="Users" asp-action="Index" class="forget">Войти в аккаунт</a>
+            </form>
+        </div>
+      </body>
+  </html>

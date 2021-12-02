@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model DentalCare.Core.Appointment
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/reception.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <section class="form">
+                <h1 class="form-title">Заполните форму записи на прием</h1>
+                <form action="" class="form-list" method="post">
+                    <label for="">ФИО</label>
+                    <input type="text" class="form-list__item" name="Name" value="@Model.Name">
+                    <label for="">Дата рождения</label>
+                    <input type="date" class="form-list__item" name="BirthDate" value="@Model.BirthDate">
+                    <label for="">Телефон</label>
+                    <input type="tel" class="form-list__item" name="Telephone" value="@Model.Telephone">
+                    <label for="">Почта</label>
+                    <input type="email" class="form-list__item" name="Email" value="@Model.Email">
+                    <label for="">Дата и время приема</label>
+                    <input type="datetime-local" class="form-list__item" name="AppointmentDate" value="@Model.AppointmentDate">
+                    <input type="submit" value="Записаться">
+                </form>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

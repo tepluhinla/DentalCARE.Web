@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/servicelist.css">
+    <title>Услуги</title>
+</head>
+<body>
+    <main>
+        <section class="service">
+            <div class="container">
+                <h1 class="service-title">СТОМАТОЛОГИЯ «Dental<span>CARE</span>» ОКАЗЫВАЕТ УСЛУГИ</h1>
+                @foreach (var service in Model)
+                {
+                    <div class="service-container">
+                        <div class="service-container__item">
+                            <div class="service-container__item-wrapper">
+                                <h3 class="service-container__item-title">@service.Name</h3>
+                                <p class="service-container__item-descr">
+                                    @service.Description
+                                </p>
+                                <p class="service-container__item-descr">
+                                    От @Convert.ToDecimal(string.Format("{0:00}", @service.Price)) р.
+                                </p>
+                            </div>
+                            <div class="service-container__buttons">
+                                <div class="service-container__buttons-item btn">
+                                    @Html.ActionLink("Изменить", "Edit", "Services", new
+                               {
+                                   Id = @service.Id,
+                                   Name = @service.Name,
+                                   Description = @service.Description,
+                                   Price = @service.Price,
+                               })
+                                </div>
+                                    <div class="service-container__buttons-item btn"> @Html.ActionLink("Удалить", "Remove", "Services", new { id = @service.Id }) </div>
+                                    @*<button class="service-container__buttons-item btn">Удалить</button>*@
+                                </div>
+                            </div>
+                    </div>
+                 }
+                @*<div class="service-container__item">
+                    <div class="service-container__item-wrapper">
+                        <h3 class="service-container__item-title">Лечение зубов </h3>
+                        <p class="service-container__item-descr">
+                            1)Безболезненное лечение кариеса с помощью пломб.
+                            2)Безболезненная реставрация зубов светоотверждаемыми композитными материалами.
+                            3)Безболезненное лечение каналов зубов.
+                            4)Исправление эстетических проблем с зубами с помощью пломбировочных композитных.
+                        </p>
+                    </div>
+                    <div class="service-container__buttons">
+                        <button class="service-container__buttons-item btn">Изменить</button>
+                        <button class="service-container__buttons-item btn">Удалить</button>
+                    </div>
+                </div>*@
+            </div>
+            <br>
+            <a class="service-container__buttons-item btn" asp-controller="Services" asp-action="Add"> Добавить услугу</a>
+                <p class="service-info">*В нашем учреждении предоставляется скидка <span>20%</span> на все виды платных услуг лицам имеющим льготную категорию.</p>
+                <div class="service-buttons">
+                    <a asp-controller="Appointment" asp-action="Index" class="service-buttons__record">Записаться на прием</a>
+                    @*<button class="service-buttons__price">Цены на услуги</button>*@
+                </div>
+</section>
+    </main>
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/contentModel.xml
+/.idea.DentalCARE.Web.iml
+# Datasource local storage ignored files
+/../../../../../../:\С#\DentalCARE.Web\.idea\.idea.DentalCARE.Web\.idea/dataSources/
+/dataSources.local.xml

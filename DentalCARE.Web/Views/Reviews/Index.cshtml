@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@inject ApplicationContext _db;
+@inject DentalCare.Core.Сlinic _clinic;
+@using DentalCare.Core
+@model DentalCare.Core.Review
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/review.css">
+    <title>Отзывы</title>
+</head>
+<body>
+    <main class="main">
+        <section class="review">
+            <div class="container">
+                <h1 class="review-title">Отзывы</h1>
+                <div class="review-write__title">Оставить отзыв:</div>
+                <form asp-action="Index" asp-controller="Reviews" class="review-write" method="post">
+                    <label for="@Model.Name">Имя</label>
+                    <input type="text" name="Name">
+                    <label for="@Model.Content">Комментарий</label>
+                    <textarea name="Content" id="" cols="20" rows="10"></textarea>
+                    <input class="service-container__buttons-item btn" type="submit" value="Отправить">
+                </form>
+
+                <div class="review-list">
+                    <h2 class="review-list__title">Наши отзывы</h2>
+                    @foreach (var review in _db.Reviews.ToList())
+                    {
+                        <div class="review-list__item">
+                            <div class="review-list__info">
+                                <p class="review-list__name">@review.Name</p>
+                                <p class="review-list__content">@review.Content</p>
+                            </div>
+                            <div class="review-list__button">@Html.ActionLink("Удалить отзыв", "RemoveReview", "Reviews", new { id = @review.Id })</div>
+                            @*<a href="" asp-action="RemoveReview" asp-controller="Reviews" class="review-list__button">Удалить отзыв</a>*@
+                        </div>
+                    }
+                    @*<div class="review-list__item">
+                        <div class="review-list__info">
+                            <p class="review-list__name">Рамиля</p>
+                            <p class="review-list__content">С умелыми руками и профессионализмом Леонида Алексеевича знакома давно.Cостояние моих зубов он привел в активный режим. Очень внимательный и отзывчивый доктор, знающий и умеющий использовать свои знания в работе с пациентами. Дальнейших успехов,Леонид Алексеевич. Скоро мне понадобится Ваша помощь.</p>
+                        </div>
+                        <a href="" class="review-list__button">Удалить отзыв</a>
+                    </div>*@
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
